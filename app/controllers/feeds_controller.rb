@@ -17,7 +17,8 @@ class FeedsController < ApplicationController
   end
 
   def confirm
-    @feed = Feed.new(feed_params)
+    @feed = current_user.feeds.build(feed_params)
+    render :new if @feed.invalid?
   end
 
   def edit
@@ -25,10 +26,10 @@ class FeedsController < ApplicationController
 
   def create
     @feed = Feed.new(feed_params)
-
+    @feed.user_id = current_user.id #追記
     respond_to do |format|
       if @feed.save
-        ContactMailer.contact_mail(@contact).deliver  ##追記
+        ContactMailer.feed_notification(@feed).deliver  ##追記
         format.html { redirect_to @feed, notice: "Feed was successfully created." }
         format.json { render :show, status: :created, location: @feed }
       else
