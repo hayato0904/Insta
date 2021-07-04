@@ -1,7 +1,6 @@
 Rails.application.configure do
 
-  config.action_mailer.default_url_options = { host: 'agile-savannah-37355.herokuapp.com
-    ' }
+  config.action_mailer.default_url_options = { host: 'morning-atoll-36706.herokuapp.com' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
