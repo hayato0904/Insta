@@ -1,7 +1,6 @@
 class User < ApplicationRecord
 
-    # belongs_to :user
-    # mount_uploader :image, ImageUploader
+     mount_uploader :image, ImageUploader
 
     has_many :feeds
     validates :name,  presence: true, length: { maximum: 30 }

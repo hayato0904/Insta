@@ -3,7 +3,8 @@
 <p>
   <strong>Image:</strong>
     <%= image_tag @feed.image.url %>
-    <%= @feed.user.name %>
+    <%= @feed.user.name %> 
+    <%# @feedは画像を投稿したユーザーの名前を表示している。 %>
 </p>
 
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
