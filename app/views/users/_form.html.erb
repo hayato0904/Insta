@@ -1,0 +1,27 @@
+<%= form_with(model: super, local: true, url: choose_new_or_edit) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+   <%= f.label :content %>
+    <%= f.text_area :content %>
+    <%= f.label :image %>
+    <!-- 確認画面から新規作成画面に戻った時に、 -->
+    <!-- アップロードした画像を表示させるための記述 -->
+    <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

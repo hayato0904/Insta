@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Content:</strong>
+   <%= @feed.content %>
+</p>
+ 
+<p>
   <strong>Image:</strong>
     <%= image_tag @feed.image.url %>
     <%= @feed.user.name %> 

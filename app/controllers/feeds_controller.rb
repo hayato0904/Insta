@@ -30,8 +30,10 @@ class FeedsController < ApplicationController
     respond_to do |format|
       if @feed.save
         ContactMailer.feed_notification(@feed).deliver  ##追記
-        format.html { redirect_to @feed, notice: "Feed was successfully created." }
-        format.json { render :show, status: :created, location: @feed }
+        # 下記一行をshow画面に行くのではなく、index画面に飛ばした。
+        format.html { redirect_to feeds_path, notice: "Feed was successfully created." }
+        # 下記一行のshowをindexに変更
+        format.json { render :index, status: :created, location: @feed }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
