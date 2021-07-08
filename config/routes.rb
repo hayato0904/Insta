@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :favorites, only: [:create, :destroy]
   resources :feeds do
     collection do
       post :confirm
