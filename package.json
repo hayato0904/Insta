@@ -1,5 +1,8 @@
 {
   "name": "image_uploader_test_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "3",
+    "jquery": "^3.6.0"
+  }
 }

@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: %i[ show edit update destroy ]
+  before_action :check_user, only: %i[edit update destroy ]
 
   def index
     @feeds = Feed.all
@@ -69,4 +70,14 @@ class FeedsController < ApplicationController
     def feed_params
       params.require(:feed).permit(:image, :image_cache, :content)
     end
+ 
+    def check_user
+      @feed = Feed.find(params[:id])
+      if current_user.id != @feed.user.id
+        redirect_to feeds_path, notice: "あなたは投稿したユーザーと異なるためTOP画面に遷移しました。"
+      end 
+    end
+
 end
+
+

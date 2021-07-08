@@ -15,13 +15,15 @@
       <tr>
         <td><%= feed.image %></td>
         <td><%= link_to 'Show', feed %></td>
-        <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
-        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%# カレントユーザーのIDとfeedsのユーザーのIDと同じだった場合下記二つのボタンを表示する。 %>
+        <% if current_user.id == feed.user.id %>
+          <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
+          <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %> 
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Feed', new_feed_path %>
